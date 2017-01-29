@@ -1,0 +1,11 @@
+Package: LCMSdemo
+Type: Package
+Title: Demo for the EBI Metabolomics Course
+Version: 0.1.0
+Author: Pietro Franceschi
+Maintainer: Pietro Franceschi <pietro.franceschi@fmach.it>
+Description: Interactive demo of xcms based on shiny
+License: GPL-2
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Depends:CAMERA, xcms, ptw, scales, shiny, ggplot2, plotly, markdown
