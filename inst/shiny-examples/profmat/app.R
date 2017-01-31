@@ -51,15 +51,7 @@ ui <- fluidPage(
       sliderInput("mzrange", "mz range",
                   min = 50, max = 3000, value = c(50,3000), step = 10),
       submitButton("Update View"),
-      br(),
-      tags$hr(),
-      h3("Questions for discussion"),
-      tags$ol(
-        tags$li("What is the meaning of the figure?", style = "color:blue"),
-        tags$li("What do the spots in the map represent?", style = "color:blue"),
-        tags$li("What is the relation between the matrix and the TIC?", style = "color:blue"),
-        tags$li("What will happen if you change step size? Why?", style = "color:blue"),
-        tags$li("Can you pick a reasonable value for the step? How can you find it?", style = "color:blue")
+      br()
       )
     ),
 
