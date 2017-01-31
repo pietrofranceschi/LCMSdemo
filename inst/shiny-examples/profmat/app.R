@@ -60,7 +60,6 @@ ui <- fluidPage(
       br(),
       includeMarkdown("profmat.md")
       )
-    )
   )
 
 
