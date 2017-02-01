@@ -44,7 +44,7 @@ ui <- fluidPage(
       width = 4,
       ## the type of smoothing
       selectInput("smooth", label = h3("Smoohing type"),
-                  choices = list("loess" = "loess", "liear" = "linear"),
+                  choices = list("loess" = "loess", "linear" = "linear"),
                   selected = 1),
       ## the degree of smooting
       sliderInput("span", label = h3("Span"), min = 0.01,

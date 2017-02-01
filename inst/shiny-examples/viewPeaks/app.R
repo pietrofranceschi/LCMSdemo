@@ -51,7 +51,7 @@ server <- function(input, output,session) {
          xlim=input$rtrange_pm,
          ylim=input$mzrange_pm,
          xlab = "rt", ylab = "mz")
-    rasterImage(as.raster(p), xleft=1, xright=ncol(p)*(900/1606), ybottom=3000, ytop=50)
+    rasterImage(as.raster(p), xleft=1, xright=ncol(p)*(900/1606), ybottom=50, ytop=3000)
   })
 
   output$plotcw <- renderPlot({

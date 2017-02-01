@@ -52,15 +52,14 @@ ui <- fluidPage(
                   min = 50, max = 3000, value = c(50,3000), step = 10),
       submitButton("Update View"),
       br()
-      )
-    ),
-
+      ),
     mainPanel(
       plotOutput("plot1"),
       br(),
       includeMarkdown("profmat.md")
       )
   )
+)
 
 
 

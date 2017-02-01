@@ -1,3 +1,17 @@
+#' Density based Grouping demo
+#'
+#' @param bw bandwidth (standard deviation or half width at half maximum)
+#' of gaussian smoothing kernel to apply to the peak density chromatogram
+#'
+#' @param mzwd width of overlapping m/z slices to use for creating peak density
+#' chromatograms and grouping peaks across samples
+#'
+#' @return a plot showing the progress grouping along the m/z scale
+#' @export
+#'
+#' @examples
+#'
+
 ExGroup <- function(bw = 6, mzwd = 0.5 ){
   #suppressMessages(require(xcms))
   graphics.off()
@@ -5,8 +19,10 @@ ExGroup <- function(bw = 6, mzwd = 0.5 ){
   cat("\n is performed.")
   cat("\n Here we see the progress of features grouping")
   cat("\n in a dataset of three samples")
-  cat("\n Hit CTRL+C in Linux or browse the menu (Windows Mac)")
-  cat("\n to stop the process")
+  cat("\n Hit CTRL+C in Linux or browse the menu (Windows, Mac)")
+  cat("\n to stop the process.")
+  cat("\n In RStudio you can use the tiny stop icon at the top right of ")
+  cat("\n the console window")
   cat("\n")
   cat("\n Showing results for bandwidth (bw) = ", bw)
   cat("\n Showing results for mzwd = ", mzwd)
