@@ -18,7 +18,7 @@
 #'
 ExMF <- function(step = 0.5, snthresh = 10) {
   #suppressMessages(require(xcms))
-  graphics.off()
+  #graphics.off()
   cat("\n This demo shows how peak picking is performed by Matched Filter.")
   cat("\n Here we see the progress of peak picking")
   cat("\n across the different extracted ion traces.")

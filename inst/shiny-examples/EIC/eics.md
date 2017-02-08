@@ -6,4 +6,8 @@ When starting the analysis of a specific dataset, it is always a good idea to sp
 
 If you do not have any idea, a good starting point is to look for the monoisotopic mass of these molecules in [www.chemspider.com](http://www.chemspider.com/) ... and then to try to figure out which ion these molecules will produce ...
 
+Some questios to orient the discussion ...
 
+* What is the meaning of the figure?
+* Whith the default values I see two peaks. Why?
+* What whill happens if you change the parameters? Why?

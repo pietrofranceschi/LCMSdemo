@@ -73,7 +73,7 @@ As a general rule, the ionization of each metabolite will result in several ions
 The package contains a shiny damo to visualize and inspect EICs. 
 
 ```{r}
-shinyExample('eic')
+shinyExample('EIC')
 ```
 
 To stop the web based demo just close the window.

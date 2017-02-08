@@ -6,10 +6,10 @@ The objective of this demo is to illustrate how "density based" retention time c
 Some question to orient your discussion ...
 
 * What is the meaning of the plot?
-* What do the spots in the map represent?
-* What is the relation between the matrix and the TIC?
-* What will happen if you change step size? Why?
-* Can you pick a reasonable value for the step? How can you chose it?
+* What do the black (and blue) lines represent?
+* What happens if you tweak the parameters?
+* How can one select the optimal settings?
+* Can you propose a strategy to find the best solution?
 
 
 

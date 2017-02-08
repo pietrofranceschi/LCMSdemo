@@ -36,14 +36,7 @@ ui <- fluidPage(
                    value = "0.5", width = "50%"
       ),
       submitButton("Update View"),
-      br(),
-      br(),
-      tags$hr(),
-      h3("Questions"),
-      tags$ol(
-        tags$li("What is the meaning of the figure?", style = "color:blue"),
-        tags$li("Whith the default values I see two peaks. Why?", style = "color:blue"),
-        tags$li("What whill happens if you change the parameters? Why?", style = "color:blue"))
+      br()
     ),
 
     mainPanel(
