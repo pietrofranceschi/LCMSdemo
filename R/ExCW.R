@@ -14,7 +14,7 @@
 #'
 ExCW <- function(ppm = 20, snthresh =  10) {
   #suppressMessages(require(xcms))
-  graphics.off()
+  #graphics.off()
   cat("\n This demo shows how peak picking is performed by CentWave.")
   cat("\n As before, we see the progress of peak picking")
   cat("\n across the different regions of interest")
