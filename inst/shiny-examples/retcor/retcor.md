@@ -5,7 +5,7 @@ The objective of this demo is to illustrate how "density based" retention time c
 
 Some question to orient your discussion ...
 
-* What is the meaning of the plot?
+* What is the meaning of the plot? 
 * What do the black (and blue) lines represent?
 * What happens if you tweak the parameters?
 * How can one select the optimal settings?
