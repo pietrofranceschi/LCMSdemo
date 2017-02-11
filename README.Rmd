@@ -16,7 +16,7 @@ Demo for the EBI metabolomics course. The package is designed to provide an inte
 
 
 ```
-xcms,CAMERA, ptw, scales, ggplot2, shiny, ggplot2, plotly, markdown
+xcms,CAMERA, ptw, scales, shiny, ggplot2, plotly, markdown
 ```
 
 * Install devtools: in the R/RStudio shell type
@@ -39,7 +39,7 @@ library(LCMSdemo)
 # Usage
 
 The demo covers some of the key step in the preprocessing of untargeted metabolomics data by `xcms`.
-The demo is not designe to be exhaustive, but it wants to highlight some of the ctucial points, focussing on the impact of some of the tunable parameters on the overall results. Even if it is clearly `xcms` oriented, many of the concepts and ideas are implemented behind the scees of many commercial closed source software solutions. 
+The demo is not designed to be exhaustive, but it wants to highlight some of the crucial points, focusing on the impact of some of the tunable parameters on the overall results. Even if it is clearly `xcms` oriented, many of the concepts and ideas are implemented behind the scenes of many commercial closed source software solutions. 
 
 The step covered in the demo include:
 
@@ -49,7 +49,7 @@ The step covered in the demo include:
 
 
 #### Dataset
-The data used for the demo are the results of a UPLC-QTOF(-) analysis of a set of apple extracts. The raw data and the description of the samples are availble @Metabolights (MTBLS59). Preprocessed data matrices are also included in the `BioMark` R package available @CRAN
+The data used for the demo are the results of a UPLC-QTOF(-) analysis of a set of apple extracts. The raw data and the description of the samples are available @Metabolights (MTBLS59). Preprocessed data matrices are also included in the `BioMark` R package available @CRAN
 
 
 *******
@@ -58,8 +58,8 @@ The data used for the demo are the results of a UPLC-QTOF(-) analysis of a set o
 Each raw file (cdf,mzXML) contains the data recorded by the mass spectrometer during the analysis of **one** sample. The data are two dimensional in nature and it is always a good idea to get a feeling on their properties looking at them. 
 
 #### Profile Matrix 
-The profile matrix gives a two dimensional global overview of the raw data. In `xcms` the profile matrix is constructed by binning the spectrometer data along the m/z dimension. The size of the bins will have a strong impact on dimension of the profile matrix, with possible consequencies on the speed of the overall data preprocessing.
-In the RStudio console the specific demo con be run with
+The profile matrix gives a two dimensional global overview of the raw data. In `xcms` the profile matrix is constructed by binning the spectrometer data along the m/z dimension. The size of the bins will have a strong impact on dimension of the profile matrix, with possible consequences on the speed of the overall data preprocessing.
+In the R Studio console the specific demo con be run with
 
 ```{r}
 shinyExample('profmat')
@@ -68,9 +68,9 @@ shinyExample('profmat')
 To stop the web based demo just close the window.
 
 #### Extracted Ion Traces
-As a general rule, the ionization of each metabolite will result in several ions (fragments, isotopes, adducts) and the "chromatographic" profile of each one of them will show a peak in correpondence of the elution time of the metabolite. These ion specific chromatographic profiles are called Extracted Ion Chromatograms/Traces (EIC/EIT) and they play a pivotal role in many preprocessing algorithm. In the ideal case the show a clean gaussian profile in correspondence of the meabolite peaks, but, unfortunately, many real-life profiles are far of being regular. This costitutes a clear challenge for any auomatic data analysis algorithm.
+As a general rule, the ionization of each metabolite will result in several ions (fragments, isotopes, adducts) and the "chromatographic" profile of each one of them will show a peak in correspondence of the elution time of the metabolite. These ion specific chromatographic profiles are called Extracted Ion Chromatograms/Traces (EIC/EIT) and they play a pivotal role in many preprocessing algorithm. In the ideal case the show a clean gaussian profile in correspondence of the metabolite peaks, but, unfortunately, many real-life profiles are far of being regular. This constitutes a clear challenge for any automatic data analysis algorithm.
 
-The package contains a shiny damo to visualize and inspect EICs. 
+The package contains a shiny demo to visualize and inspect EICs. 
 
 ```{r}
 shinyExample('EIC')
@@ -81,23 +81,94 @@ To stop the web based demo just close the window.
 ******
 
 ### Peak Picking
-With "peak picking" one refers to the process of spotting in the two dimensional rt/mz plane the "true" ionic signals, which are associated to the different metabolites. As we have just said, each detected metabolites generates at least one ionic peak in the signal space and being able of automatically (and reliably) finding those peaks is the first step for a successfull data analysis.
+With "peak picking" one refers to the process of spotting in the two dimensional rt/mz plane the "true" ionic signals, which are associated to the different metabolites. As we have just said, each detected metabolites generates at least one ionic peak in the signal space and being able of automatically (and reliably) finding those peaks is the first step for a successful data analysis.
 
-Peak picking can be performed in many differnt ways, and the literature pullulates of different peak picking algorithms. Above specific technical details, here we would like to highlight two important messages:
+Peak picking can be performed in many different ways, and the literature pullulates of different peak picking algorithms. Above specific technical details, here we would like to highlight two important messages:
 
 * Every algorithm has its specific pros and cons. There are not "perfect" solutions, but only better ones.
 * To get the maximum from each algorithm it would be better to know which idea has been implemented behind the scenes, in order to  be able to adjust knowingly the algorithm (hidden) parameters.
 * Every automatic solution will be less good than the analyst eye ... but the results will be repeatable. Do not ask perfection, only look for it ;-) ! 
 
-In the package we implemented two interactive demos to show how `xcms` performs peack picking, by using two different algorithms `Matched Filter` and `CentWave`. The phylosophy of the two approaches has been covered in the lecture and further details can be found in the relative publications. In the demos we are touching the effects of a selected set of parameters, if you want to see more please refer to the `xcms` documentation.
+In the package we implemented two interactive demos to show how `xcms` performs peak picking, by using two different algorithms `Matched Filter` and `CentWave`. The philosophy of the two approaches has been covered in the lecture and further details can be found in the relative publications. In the demos we are touching the effects of a selected set of parameters, if you want to see more please refer to the `xcms` documentation.
 
 The two peak picking demo are not implemented as Shiny applications but will run into the console and the plot will be shown in the standard R output. If you use "plane" R, the output will be an independent window, if you rely on RStudio (what we recommend) the plots will show up in the "plots" tab of the lower bottom panel of the application.
 
 ![The plot tab in RStudio](readmeimg/plot.png)
 
-Both demos will show the progress of peak picking and each step will generate a new plot in the window. Waitig until the end of the process for a single file can be rather time consuming 
+Both demos will show the progress of peak picking and each step will generate a new plot in the window (around once every two seconds. Waiting until the end of the process for a single file can be rather time consuming so you can stop the process by clicking the tiny stop icon present in the top right corner of the R Studio console panel
 
+![Stopping the demo](readmeimg/stop.png)
 
+When the demo is not running you can browse through the old plots to check how each separate peak is treated. To do that, just use the two arrows at the top of the RStudio plot panel
+
+![Navigating the plots](readmeimg/arrows.png)
+
+#### Matched Filter
+To run the demo with the default parameters (step = 0.5, snthresh =  10) just run
+
+```{r}
+ExMF()
+```
+
+After discussing the plots with the help of the text presented in the console you can tweak the 
+parameters changing `step` and `snthresh`. To do that change the command including the new values for the two parameters. For example  
+
+```{r}
+ExMF(step = 1, snthresh = 9)
+```
+
+Will run the demo with two new settings
+
+#### CentWave
+The demo for CentWave is almost identical to the previous one. You can run it typing
+
+```{r}
+ExMF()
+```
+
+To change the settings of the algorithm and test the effects of `ppm` and `snthresh` run the command with the following arguments
+
+```{r}
+ExMF(ppm = 60, snthresh =  9)
+```
+
+#### Visualize the peaks
+To get a general feeling of the results of the peak picking, evaluate the effects of the different parameters and compare the MatchedFilter and Cent Wave we prepared a specific Shiny demo which can be run typing 
+
+```{r}
+shinyExample('viewPeaks')
+```
+
+As before, to stop the demo, just close the Shiny window.
+
+******
+
+### Grouping and retention time correction
+Peak picking is performed sample wise. In order to extract the "final" data matrix for the experiment it is necessary to join the individual peak lists in a consensus list of features. To do that in a reliable way, being sure that a feature have the same meaning in all the samples, it is necessary to compensate the chromatographic sample-to-sample variability and correct for the so called **retention time shifts**. In `xcms` this process is done in two steps:
+
+- the `group` function will find a set of matching features present in (almost) all the samples.
+- the `retcor` function will perform the sample wise retention time correction.
+
+`LCMSdemo` implements three demos to to illustrate some of the details of both steps.
+
+#### Grouping
+The `ExGroup` demo shows the progress of the grouping of the peak lists in an experiment constituted of three samples. As before the demo runs in the console and can be managed as `ExCW` and `ExMF`.
+
+With default parameters (bw = 6, mzwd = 0.5) it can be run issuing
+
+```{r}
+ExGroup()
+```
+
+while, for example, 
+
+```{r}
+ExGroup(bw = 20, mzwd = 1)
+```
+
+can be used to test the effect of the different parameters. 
+
+#### Grouping
 
 
 
