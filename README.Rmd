@@ -19,7 +19,7 @@ Demo for the EBI metabolomics course. The package is designed to provide an inte
 xcms,CAMERA, ptw, scales, shiny, ggplot2, plotly, markdown
 ```
 
-* Install devtools: in the R/RStudio shell type
+* Install devtools: in the R/R Studio shell type
 ```{r}
 install.packages("devtools")
 ```
@@ -91,7 +91,7 @@ Peak picking can be performed in many different ways, and the literature pullula
 
 In the package we implemented two interactive demos to show how `xcms` performs peak picking, by using two different algorithms `Matched Filter` and `CentWave`. The philosophy of the two approaches has been covered in the lecture and further details can be found in the relative publications. In the demos we are touching the effects of a selected set of parameters, if you want to see more please refer to the `xcms` documentation.
 
-The two peak picking demo are not implemented as Shiny applications but will run into the console and the plot will be shown in the standard R output. If you use "plane" R, the output will be an independent window, if you rely on RStudio (what we recommend) the plots will show up in the "plots" tab of the lower bottom panel of the application.
+The two peak picking demo are not implemented as Shiny applications but will run into the console and the plot will be shown in the standard R output. If you use "plane" R, the output will be an independent window, if you rely on R Studio (what we recommend) the plots will show up in the "plots" tab of the lower bottom panel of the application.
 
 ![The plot tab in RStudio](readmeimg/plot.png)
 
@@ -99,7 +99,7 @@ Both demos will show the progress of peak picking and each step will generate a 
 
 ![Stopping the demo](readmeimg/stop.png)
 
-When the demo is not running you can browse through the old plots to check how each separate peak is treated. To do that, just use the two arrows at the top of the RStudio plot panel
+When the demo is not running you can browse through the old plots to check how each separate peak is treated. To do that, just use the two arrows at the top of the R Studio plot panel
 
 ![Navigating the plots](readmeimg/arrows.png)
 
@@ -111,7 +111,7 @@ ExMF()
 ```
 
 After discussing the plots with the help of the text presented in the console you can tweak the 
-parameters changing `step` and `snthresh`. To do that change the command including the new values for the two parameters. For example  
+parameters changing `step` and `snthresh`. To do that use the command including the new values for the two parameters. For example  
 
 ```{r}
 ExMF(step = 1, snthresh = 9)
@@ -120,20 +120,20 @@ ExMF(step = 1, snthresh = 9)
 Will run the demo with two new settings
 
 #### CentWave
-The demo for CentWave is almost identical to the previous one. You can run it typing
+The demo for CentWave is almost identical to the previous one. You can run it by typing
 
 ```{r}
-ExMF()
+ExCW()
 ```
 
-To change the settings of the algorithm and test the effects of `ppm` and `snthresh` run the command with the following arguments
+Here the available settings are `ppm` and `snthresh`. To change them just run the command with the appropriate arguments
 
 ```{r}
-ExMF(ppm = 60, snthresh =  9)
+ExCW(ppm = 60, snthresh =  9)
 ```
 
-#### Visualize the peaks
-To get a general feeling of the results of the peak picking, evaluate the effects of the different parameters and compare the MatchedFilter and Cent Wave we prepared a specific Shiny demo which can be run typing 
+#### Visualize the distribution of the features
+To get a general feeling of the results of the peak picking, evaluate the effects of the different parameters and compare the MatchedFilter and Cent Wave a specific Shiny demo is available.  
 
 ```{r}
 shinyExample('viewPeaks')
@@ -144,15 +144,15 @@ As before, to stop the demo, just close the Shiny window.
 ******
 
 ### Grouping and retention time correction
-Peak picking is performed sample wise. In order to extract the "final" data matrix for the experiment it is necessary to join the individual peak lists in a consensus list of features. To do that in a reliable way, being sure that a feature have the same meaning in all the samples, it is necessary to compensate the chromatographic sample-to-sample variability and correct for the so called **retention time shifts**. In `xcms` this process is done in two steps:
+Peak picking is performed sample wise. In order to extract the "final" data matrix it is necessary to join the individual peak lists in a consensus list of features. To do that in a reliable way - being sure that a feature have the same meaning in all the samples - it is necessary to compensate the chromatographic sample-to-sample variability and correct for the so called **retention time shifts**. In `xcms` this process is done in two steps:
 
-- the `group` function will find a set of matching features present in (almost) all the samples.
-- the `retcor` function will perform the sample wise retention time correction.
+- the `group` function is used to match the features present in (almost) all the samples. 
+- the `retcor` function starts from the list of the groups and perform the sample wise retention time correction.
 
 `LCMSdemo` implements three demos to to illustrate some of the details of both steps.
 
 #### Grouping
-The `ExGroup` demo shows the progress of the grouping of the peak lists in an experiment constituted of three samples. As before the demo runs in the console and can be managed as `ExCW` and `ExMF`.
+The `ExGroup` demo shows how the grouping of the individual peak lists is performed for an LC-MS run of three samples. As before the demo runs in the console and can be managed as `ExCW` and `ExMF`.
 
 With default parameters (bw = 6, mzwd = 0.5) it can be run issuing
 
@@ -168,7 +168,23 @@ ExGroup(bw = 20, mzwd = 1)
 
 can be used to test the effect of the different parameters. 
 
-#### Grouping
+#### Retention time correction
+The default form of retention time correction implemented in `xcms` start from the identification of a series of "hook" groups which contain features identified in "almost" all the samples. The retention time shift required to align the features in these landmark groups are then used to define a general retention time correction function by interpolation. The process can be extremely flexible and its outcomes have to be judged taking into consideration the specific characteristics (in term of chromatography) of each experiment.
+The topic is the subject of the `retcor` shiny demo.
+
+```{r}
+shinyExample('retcor')
+```
+
+As always, this is only one of the possible solution to perform retention time correction. An alternative approach is based on the idea of *warping*. In this case, the optimal retention time correction is not found considering a limited number of landmark groups, but it is found by looking to the "optimal" stretch of the overall chromatographic profile. An implementation of this idea can be found in the `obiwarp` algorithm included in `xcms`. An illustrative example of the application of warping to chromatographic data is included in `LCMSdemo` and can be visualized by
+
+```{r}
+shinyExample('ptw')
+```
+
+
+
+
 
 
 
