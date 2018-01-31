@@ -15,15 +15,17 @@ shinyExample <- function(example) {
   # locate all the shiny app examples that exist
   validExamples <- list.files(system.file("shiny-examples", package = "LCMSdemo"))
 
-  validExamplesMsg <-
-    paste0(
-      "Valid examples are: '",
-      paste(validExamples, collapse = "', '"),
-      "'")
+  if(missing(example)){
+    validExamplesMsg <-
+      paste0(
+        "Valid examples are: '",
+        paste(validExamples, collapse = "', '"),
+        "'")
+    return(validExamplesMsg)
+  }
 
   # if an invalid example is given, throw an error
-  if (missing(example) || !nzchar(example) ||
-      !example %in% validExamples) {
+  if (!nzchar(example) || !example %in% validExamples) {
     stop(
       'Please run `shinyExample()` with a valid example app as an argument.\n',
       validExamplesMsg,
