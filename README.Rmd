@@ -54,7 +54,7 @@ The data used for the demo are the results of a UPLC-QTOF(-) analysis of a set o
 
 *******
 
-### Viaualization of the Raw Data
+### Visualization of the Raw Data
 Each raw file (cdf,mzXML) contains the data recorded by the mass spectrometer during the analysis of **one** sample. The data are two dimensional in nature and it is always a good idea to get a feeling on their properties looking at them. 
 
 #### Profile Matrix 
